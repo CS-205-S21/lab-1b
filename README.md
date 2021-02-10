@@ -83,9 +83,10 @@ origin repository.
 elias$ cd repo_member1_member2/
 elias$ git pull
 ```
-This should result in producing a duplicate directory in the lab partner's directory. Examine the directory to be sure this has happened.
-The next step is for the lab partner who pulled the information from the origin repository. They should open the file "test/file"
-with the nano program, modify it, and save the file. Once they have done this, they should run the following command:
+
+This should result in producing a duplicate directory in the lab partner's directory. Examine the directory to be sure this has happened. The next step is for the lab partner who pulled the information from the origin repository. They should open the file "test/file" with the nano program, modify it, and save the file. Once they have done this, they should run the following command:
+
+```
 elias$ git status
 On branch master
 Your branch is up-to-date with 'origin/master'.
@@ -97,7 +98,11 @@ Untracked files:
 (use "git add ..." to include in what will be committed)
 test/file~
 no changes added to commit (use "git add" and/or "git commit -a")
+```
+
 The information displayed is Git's way of helping you figure out what to do. Thus you should follow these steps:
+
+```
 elias$ git add test/file
 elias$ git status
 On branch master
@@ -117,12 +122,15 @@ Writing objects: 100% (4/4), 303 bytes | 0 bytes/s, done.
 Total 4 (delta 0), reused 0 (delta 0)
 To ssh://139.147.9.134/home/lab_1_11/repo_member1_member2.git
 3a4a2f3..d6979f7 master -> master
+```
+
 Complete this step by having the other (first) lab partner execute a git pull.
+
 To find out what is going on, one can always use the "git log" command. Both lab partners should execute this command.
-These basic steps are the essentials of working with Git. But there is one situtation that can be tricky, which arises when
-both lab partners modify the same file(s) simultaneously. To simulate this, both partners should add their name to the first
-line in the file, both then execute an add and a commit. Then one of the lab partners should do a push, while the other
-partner waits.
+
+These basic steps are the essentials of working with Git. But there is one situtation that can be tricky, which arises when both lab partners modify the same file(s) simultaneously. To simulate this, both partners should add their name to the first line in the file, both then execute an add and a commit. Then one of the lab partners should do a push, while the other partner waits.
+
+```
 elias$ git push
 Counting objects: 4, done.
 Writing objects: 100% (4/4), 316 bytes | 0 bytes/s, done.
@@ -140,7 +148,11 @@ hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
 hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
 Things seem broken – time to correct them by first pulling the first lab partner's code.
+
+```
 elias$ git pull
 remote: Counting objects: 4, done.
 remote: Total 4 (delta 0), reused 0 (delta 0)
@@ -150,21 +162,31 @@ d6979f7..db34a9d master -> origin/master
 Auto-merging test/file
 CONFLICT (content): Merge conflict in test/file
 Automatic merge failed; fix conflicts and then commit the result.
+```
+
 The reason for the conflict will become obvious. To correct it, look in the file and see where the issue is identified.
+
+```
 elias$ more test/file
 <<<<<<< HEAD
 two I have added something...
 =======
 one I have added something...
 >>>>>>> db34a9d636c6e30324f52cdc8510a355a8b23ec1
-The correction should come in the form of modifying the file to resolve the differences and removing the three lines that were
-added by Git. You can see the resolution I took below.
+```
+
+The correction should come in the form of modifying the file to resolve the differences and removing the three lines that were added by Git. You can see the resolution I took below.
+
+```
 elias$ nano test/file
 elias$ more test/file
 I'm keeping both!!!
 two I have added something...
 one I have added something...
+```
 Now use git add, commit and push the file.
+
+```
 elias$ git add test/file
 elias$ git commit -m "cleaning up conflict"
 [master d2af95a] cleaning up conflict
@@ -176,10 +198,12 @@ Writing objects: 100% (8/8), 647 bytes | 0 bytes/s, done.
 Total 8 (delta 0), reused 0 (delta 0)
 To ssh://139.147.9.134/home/lab_1_11/repo_member1_member2.git
 db34a9d..d2af95a master -> master
+```
+
 The other lab partner should now see the negotiated change by executing a git pull.
-Experiment further with the basic operations until you feel comfortable with what is going on. You can find further information
-via the "git help" command.
-8. Now you have done the basics, get some practice with the more interesting features using the interactive tutorial, called Learning
-Git Branching.
-Submission
+Experiment further with the basic operations until you feel comfortable with what is going on. You can find further information via the "git help" command.
+
+8. Now you have done the basics, get some practice with the more interesting features using the interactive tutorial, called [Learning Git Branching](https://learngitbranching.js.org/).
+
+## Submission
 Submission will be by the instructor examining your repository.
