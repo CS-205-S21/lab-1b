@@ -1,7 +1,7 @@
 # Lab 1b: Git
 
 Lab goals
-In this continuation of Lab 1, you will be working with Git, which is a fast, scalable, distributed version control system with a richcommand set that provides both high-level operations and full access to internals. For this lab, both you and your partner will create a single Git repository in your lab account, and you will both clone this repository to your local machines. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. The illustration below is what you want your directory structure to look like by the end of this part of the lab.
+In this continuation of Lab 1, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. For this lab, both you and your partner will create a single Git repository in your lab account, and you will both clone this repository to your local machines. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. The illustration below is what you want your directory structure to look like by the end of this part of the lab.
 ```
 --- Machine (139.147.9.134) account "lab_x_xx"|
 +-- repo_member1_member2
