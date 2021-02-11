@@ -2,7 +2,7 @@
 
 ## Lab goals
 
-In this continuation of Lab 1a, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. For this lab, both you and your partner will clone a git repository from GitHub to your account on the lab machine. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
+In this continuation of Lab 1a, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. For this lab, you and your partner will clone a git repository from GitHub to your account on the lab machine. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
 
 ## Summary of your configuration so far
 Having completed Lab 1a, you can now ssh from your local machine to your lab account on the department's server. Congratulations! If you have not completed Lab 1a, please complete that assignment before proceeding.
@@ -22,6 +22,7 @@ By the end of this lab, you will be able to connect to repositories hosted on Gi
  -------------------             --------------------           --------
 ```
 
+You will also [practice working with some basic git commands](## Git'ing started).
 
 ## Add your public key to your GitHub account
 First, you will need to add your ssh key (id_rsa.pub) to your GitHub account. GitHub provides a handy set of instructions for completing this step. Follow along [here](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account). Make sure you are adding your key to the GitHub account you are using for this class and not another personal account.
