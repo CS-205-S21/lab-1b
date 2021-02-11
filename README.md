@@ -24,7 +24,7 @@ By the end of this lab, you will be able to connect to repositories hosted on Gi
 
 
 ## Add your public key to your GitHub account
-First, you will need to add your ssh key (id_rsa.pub) to your GitHub account. GitHub provides a handy set of instructions for completing this step. Follow along [here](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
+First, you will need to add your ssh key (id_rsa.pub) to your GitHub account. GitHub provides a handy set of instructions for completing this step. Follow along [here](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account). Make sure you are adding your key to the GitHub account you are using for this class and not another personal account.
 
 ## Testing your configuration
 Now let's test to see if GitHub recognizes your ssh key. Run the following command from your local terminal:
@@ -47,10 +47,10 @@ To do this, you will need to create (or edit, if one already exists) your ```~/.
 
 ### Option 1
 ```
-cd ~/.ssh
-touch config
-echo "Host 139.147.9.*" >> config
-echo " ForwardAgent yes" >> config
+cd ~/.ssh                                 # Move to the .ssh directory
+touch config                              # Make a new file called config
+echo "Host 139.147.9.*" >> config         # Append Host 139.147.9.* to that file
+echo "    ForwardAgent yes" >> config     # Append     ForwardAgent yes to that file
 ```
 
 ### Option 2
@@ -61,11 +61,16 @@ This repository contains a [config](/config) file. Download it and add it to you
 - Test the connection to GitHub from the server ```ssh -T git@github.com```
 - You should see the same message as before, ```> Hi username! You've successfully authenticated, but GitHub does not provide shell access.```
 
-## Instructions
-Each line is as follows:
-  1. The machine is the specified machine where your lab account exists, with the account named as lab_x_xx (e.g., lab_2_07 means the seventh pair of students in CS 205L-02).
-  2. The second line indicates the name of your Git repository for the labs, and should start with "repo_", then the account id of each group member. For example, if Tyler Durden and I were working on the labs together, it would be "repo_falconi_durden".
-  3. The line "test" represents a folder containing your explorations for this lab.
+--------------------------------------------------------------
+## Git'ing started
+
+Git is one of the most widely-used version control tools in industry. As you will see in the remainder of this lab assignment, it's easy to get started! However, there are many useful git features that this lab will not cover. I'd strongly encourage you to spend some time familiarizing yourself with git, since you'll be using it for the rest of the semester (and perhaps long into the future). There are quite a few well-done online tutorials:
+
+- [git-it](https://github.com/jlord/git-it-electron/releases)
+- [git branching](https://learngitbranching.js.org/)
+- [visualizing git](http://git-school.github.io/visualizing-git/)
+- And many more...
+
 
 Some important things to remember:
   1. The repository stored in your lab account should not be directly modified once created. Ask me for further explanation if this is not clear!
