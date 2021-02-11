@@ -49,6 +49,8 @@ You should see:
 ## Forwarding your ssh agent to the lab server
 At this point, you have connected your local machine to the lab server (completed in Lab 1a) and configured GitHub to recognize your ssh key (in the previous step). All that remains is to enable the remote server to use this ssh key to communicate with GitHub! 
 
+
+
 To do this, you will need to create (or edit, if one already exists) your ```~/.ssh/config``` file on your LOCAL machine.
 
 
@@ -57,6 +59,8 @@ To do this, you will need to create (or edit, if one already exists) your ```~/.
 cd ~/.ssh                                 # Move to the .ssh directory
 touch config                              # Make a new file called config
 echo "Host 139.147.9.*" >> config         # Append Host 139.147.9.* to that file
+echo "    IdentityFile ~/.ssh/id_rsa" >> config
+echo "    AddKeysToAgent yes"         >> config
 echo "    ForwardAgent yes" >> config     # Append     ForwardAgent yes to that file
 ```
 
