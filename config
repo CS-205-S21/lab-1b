@@ -1,2 +1,4 @@
 Host 139.147.9.*
+	IdentityFile ~/.ssh/id_rsa
+   	AddKeysToAgent yes
 	ForwardAgent yes
