@@ -221,7 +221,7 @@ $ git status
 $ git commit -m "Updated the files"
  [master d6979f7] Updated the files
  1 file changed, 1 insertion(+)
- elias$ git push
+$ git push
  Counting objects: 4, done.
  Writing objects: 100% (4/4), 303 bytes | 0 bytes/s, done.
  Total 4 (delta 0), reused 0 (delta 0)
