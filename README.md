@@ -59,7 +59,7 @@ This repository contains a [config](/config) file. Download it and add it to you
 ## Testing your configuration
 - ssh to the remote lab server ```ssh username@139.147.9.XXX```
 - Test the connection to GitHub from the server ```ssh -T git@github.com```
-- You should see the same message as before, ``````> Hi username! You've successfully authenticated, but GitHub does not provide shell access.```
+- You should see the same message as before, ```> Hi username! You've successfully authenticated, but GitHub does not provide shell access.```
 
 ## Instructions
 Each line is as follows:
