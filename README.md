@@ -108,6 +108,10 @@ You can also test running the shell script:
 ./test.sh
 ```
 
+The next step is to make your Git repository aware of who you are, to be able to identify you in the changes you will be making. Both lab partners should execute the following commands with their respective information.
+
+$ git config --global user.name justin                    # Obviously, replace with your name
+$ git config --global user.email smithjus@lafayette.edu   # and your email
 
 ## Making changes
 
