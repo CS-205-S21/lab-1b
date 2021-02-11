@@ -72,41 +72,44 @@ Git is one of the most widely-used version control tools in industry. As you wil
 - [visualizing git](http://git-school.github.io/visualizing-git/)
 - And many more...
 
+## Cloning your first repository
+For this exercise, you will clone an existing repository onto the lab server from GitHub and make a few changes to the code I have provided you with.
 
-Some important things to remember:
-  1. The repository stored in your lab account should not be directly modified once created. Ask me for further explanation if this is not clear!
-  2. As you move forward, your labs will be represented as a sequence of changes.
-  3. Commit these changes often (see below).
-  4. Each lab will be identified by a "tag," which will indicate a specific point in the sequence of changes, identifying it as your submission of lab 2, 3, 4, etc.
-
-Work through each of the following topics in order:
-  1. If you are using a laptop, install Git if it is not already available. You can check availability by executing git --version.
-    On Linux use either apt-get or dnf if you are using Ubuntu or Fedora respectively.
-    On Windows 10, use this link.
-    On macOS, use this link.
-  2. Be sure both you and your partner can access the lab account and SSH is properly configured from Lab 1a.
-  3. Learn about the basics of Git and create a repository on your lab account by completing the Intro to Git tutorial (see Tutorials section).
-  4. For information about the various commands, execute git help
-  5. The next step is to make your Git repository aware of who you are, to be able to identify you in the changes you will be making. Both lab partners should execute the following commands with their respective information.
+First, let's make a directory to hold this repository. On the remote server run:
 
 ```
-elias$ cd repo_member1_member2
-elias$ git config --global user.name elias
-elias$ git config --global user.email falconie@lafayette.edu
+cd ~          # Make sure we are in our home dir
+mkdir labs    # Make a new dir for the repo
+cd labs       # Move to the new dir
 ```
 
-  6. This will store the information local to this particular repository. If you are working from a Windows 10 Bash shell you need to run the following:
+Now follow [these instructions](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) to clone your team's lab-1b repository. *Make sure to select "ssh" option instead of "https" when copying the link.
 
+The instructions linked above conclude with you running the following command on the remote server:
 ```
-git config --global push.default simple
+git clone git@github.com:YOUR_USER_NAME_HERE/lab-1b.git
 ```
 
-7. The next steps will get you started with the main Git commands:
+To confirm that everything was cloned correctly:
+```
+cd lab-1b
+ls          
+>config  README.md  test.sh #You should now see these three files
+```
+
+You can also test running the shell script:
+```
+./test.sh
+```
+
+
+## Making changes
+
+The next steps will get you started with the main Git commands:
 
 First thing that needs to be done is to create some content. One lab partner should execute the following commands on their machine:
 
 ```
-elias$ cd repo_member1_member2/
 elias$ mkdir test
 elias$ git add test
 elias$ cd test/
