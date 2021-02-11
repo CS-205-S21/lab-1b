@@ -22,7 +22,7 @@ By the end of this lab, you will be able to connect to repositories hosted on Gi
  -------------------             --------------------           --------
 ```
 
-You will also [practice working with some basic git commands](## Git'ing started).
+You will also practice working with some basic git commands.
 
 ## Add your public key to your GitHub account
 First, you will need to add your ssh key (id_rsa.pub) to your GitHub account. GitHub provides a handy set of instructions for completing this step. Follow along [here](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account). Make sure you are adding your key to the GitHub account you are using for this class and not another personal account.
