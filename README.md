@@ -44,12 +44,17 @@ At this point, you have connected your local machine to the lab server (complete
 
 To do this, you will need to create (or edit, if one already exists) your ```~/.ssh/config``` file.
 
+
+### Option 1
 ```
 cd ~/.ssh
 touch config
 echo "Host 139.147.9.*" >> config
 echo " ForwardAgent yes" >> config
 ```
+
+### Option 2
+This repository contains a [config](/config) file. Add it to your ~/.ssh folder using your OS's file explorer.
 
 ## Instructions
 Each line is as follows:
