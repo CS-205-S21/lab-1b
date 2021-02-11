@@ -72,6 +72,31 @@ This repository contains a [config](/config) file. Download it and add it to you
 - Test the connection to GitHub from the server ```ssh -T git@github.com```
 - You should see the same message as before, ```> Hi username! You've successfully authenticated, but GitHub does not provide shell access.```
 
+
+## Debugging failed connections
+Should you recieve an error message when trying to test your ssh connection to GitHub, try these troubleshooting steps.
+
+### Windows
+Follow [these steps](http://docs.gcc.rug.nl/hyperchicken/ssh-agent-forwarding-mobaxterm/) to tell MobaXterm exactly where your private key is located.
+
+
+Note: you will want to load the private key here, so ```id_rsa``` not ```id_rsa.pub```
+
+### Mac
+Run the following command to see if your key has been added to the ssh agent
+
+```
+ssh-add -l
+```
+You should get a response with the key fingerprint of the private key you want to use. If instead you get the message The agent has no identities or Could not open a connection to your authentication agent, then you will need to add your private key:
+
+```
+ssh-add ~/.ssh/id_rsa
+```
+
+This problem may reemmerge when you restart your machine and/or terminal. If it does, simply rerun the ```ssh-add ~/.ssh/id_rsa``` command.
+
+
 --------------------------------------------------------------
 ## Git'ing started
 
