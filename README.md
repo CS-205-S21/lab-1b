@@ -1,10 +1,11 @@
 # Lab 1b: Git
 
-Lab goals
-In this continuation of Lab 1, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. For this lab, both you and your partner will create a single Git repository in your lab account, and you will both clone this repository to your local machines. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
+##Lab goals
+
+In this continuation of Lab 1a, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. For this lab, both you and your partner will create a single Git repository in your lab account, and you will both clone this repository to your local machines. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
 
 ## Summary of your configuration so far
-Having completed Lab 1a, you can now ssh from your local machine to your lab account on the department's server. Congratulations! 
+Having completed Lab 1a, you can now ssh from your local machine to your lab account on the department's server. Congratulations! If you have not completed Lab 1a, please complete that section before proceeding.
 
 The following diagram depicts what you have configured so far:
 ```
@@ -16,20 +17,27 @@ The following diagram depicts what you have configured so far:
 By the end of this lab, you will be able to connect to repositories hosted on GitHub using ssh:
 
 ```
----------------------      ssh      ---------------------    ssh   ----------
-| Your Local Machine|   <--------> | user@139.147.9.XXX  |  <---- | GitHub |
----------------------               ---------------------          ---------
+ -------------------      ssh    --------------------    ssh    --------
+| Your Local Machine |  <-----> | user@139.147.9.XXX |  <----> | GitHub |
+ -------------------             --------------------           --------
 ```
 
 
 ## Add your public key to your GitHub account
-First, you will need to add your ssh key (id_rsa.pub) to your GitHub account. GitHub provides a handy set of instructions for completing t
+First, you will need to add your ssh key (id_rsa.pub) to your GitHub account. GitHub provides a handy set of instructions for completing this step. Follow along [here](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
 
 ## Testing your configuration
-ssh -T git@github.com
+Now let's test to see if GitHub recognizes your ssh key. Run the following command from your local terminal:
 
-> Hi username! You've successfully authenticated, but GitHub does not
-> provide shell access.
+```
+ssh -T git@github.com
+```
+
+You should see:
+
+```
+> Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+```
 
 ## Configuring your ssh key with Github (TODO)!
 
