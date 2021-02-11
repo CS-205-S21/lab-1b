@@ -2,10 +2,10 @@
 
 ## Lab goals
 
-In this continuation of Lab 1a, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. For this lab, both you and your partner will create a single Git repository in your lab account, and you will both clone this repository to your local machines. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
+In this continuation of Lab 1a, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. For this lab, both you and your partner will clone a git repository from GitHub to your account on the lab machine. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
 
 ## Summary of your configuration so far
-Having completed Lab 1a, you can now ssh from your local machine to your lab account on the department's server. Congratulations! If you have not completed Lab 1a, please complete that section before proceeding.
+Having completed Lab 1a, you can now ssh from your local machine to your lab account on the department's server. Congratulations! If you have not completed Lab 1a, please complete that assignment before proceeding.
 
 The following diagram depicts what you have configured so far:
 ```
@@ -39,8 +39,17 @@ You should see:
 > Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-## Configuring your ssh key with Github (TODO)!
+## Forwarding your ssh agent to the lab server
+At this point, you have connected your local machine to the lab server (completed in Lab 1a) and configured GitHub to recognize your ssh key (in the previous step). All that remains is to enable the remote server to use this ssh key to communicate with GitHub! 
 
+To do this, you will need to create (or edit, if one already exists) your ```~/.ssh/config``` file.
+
+```
+cd ~/.ssh
+touch config
+echo "Host 139.147.9.*" >> config
+echo " ForwardAgent yes" >> config
+```
 
 ## Instructions
 Each line is as follows:
