@@ -2,7 +2,13 @@
 
 ## Lab goals
 
-In this continuation of Lab 1a, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. For this lab, you and your partner will clone a git repository from GitHub to your account on the lab machine. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
+In this continuation of Lab 1a, you will be working with Git, which is a fast, scalable, distributed version control system with a rich command set that provides both high-level operations and full access to internals. It lets you share a developing resource to which one or more people can contribute over time. Through specific commands, it stores things as a sequence of changes, allowing you the ability to comment on changes that are being made. If two developers are contributing to the same piece of code, then commit (submit) these pieces of code, Git will facilitate combining (merging) the code.
+
+The general structure of a git repository is that there are multiple repositories, where one git repository starts as the origin and additional repositories are "cloned." Clones are called working repositories and belong to the developer working in/on their personal, local environment/machine. This allows each developer to do their own work without being connected to the originating repository, but then occasionally sync up the work being done.
+
+
+
+For this lab, you and your partner will clone a git repository from GitHub to your account on the lab machine. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
 
 ## Summary of your configuration so far
 Having completed Lab 1a, you can now ssh from your local machine to your lab account on the department's server. Congratulations! If you have not completed Lab 1a, please complete that assignment before proceeding.
