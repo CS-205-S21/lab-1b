@@ -54,7 +54,12 @@ echo " ForwardAgent yes" >> config
 ```
 
 ### Option 2
-This repository contains a [config](/config) file. Add it to your ~/.ssh folder using your OS's file explorer.
+This repository contains a [config](/config) file. Download it and add it to your ~/.ssh folder using your OS's file explorer.
+
+## Testing your configuration
+- ssh to the remote lab server ```ssh username@139.147.9.XXX```
+- Test the connection to GitHub from the server ```ssh -T git@github.com```
+- You should see the same message as before, ``````> Hi username! You've successfully authenticated, but GitHub does not provide shell access.```
 
 ## Instructions
 Each line is as follows:
