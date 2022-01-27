@@ -6,34 +6,12 @@ In this continuation of Lab 1a, you will be working with Git, which is a fast, s
 
 The general structure of a git repository is that there are multiple repositories, where one git repository starts as the origin and additional repositories are "cloned." Clones are called working repositories and belong to the developer working in/on their personal, local environment/machine. This allows each developer to do their own work without being connected to the originating repository, but then occasionally sync up the work being done.
 
+For this lab, you and your partner will clone a git repository from GitHub to your account on your local machine and on the lab machine. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
 
-
-For this lab, you and your partner will clone a git repository from GitHub to your account on the lab machine. Then you will explore Git a bit to help set up for the coming semester. Note — I will be adding myself to your lab account and checking out a copy of your running labs. 
-
-## Summary of your configuration so far
-Having completed Lab 1a, you can now ssh from your local machine to your lab account on the department's server. Congratulations! If you have not completed Lab 1a, please complete that assignment before proceeding.
-
-The following diagram depicts what you have configured so far:
-```
----------------------      ssh      ---------------------
-| Your Local Machine|   <--------> | user@139.147.9.XXX  |
----------------------               ---------------------
-```
-
-By the end of this lab, you will be able to connect to repositories hosted on GitHub using ssh:
-
-```
- -------------------      ssh    --------------------    ssh    --------
-| Your Local Machine |  <-----> | user@139.147.9.XXX |  <----> | GitHub |
- -------------------             --------------------           --------
-```
-
-You will also practice working with some basic git commands.
-
-## Add your public key to your GitHub account
+## 1. Add your public key to your GitHub account
 First, you will need to add your ssh key (id_rsa.pub) to your GitHub account. GitHub provides a handy set of instructions for completing this step. Follow along [here](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account). Make sure you are adding your key to the GitHub account you are using for this class and not another personal account.
 
-## Testing your configuration
+### Testing your configuration
 Now let's test to see if GitHub recognizes your ssh key. Run the following command from your local terminal:
 
 ```
@@ -46,43 +24,16 @@ You should see:
 > Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-## Forwarding your ssh agent to the lab server
-At this point, you have connected your local machine to the lab server (completed in Lab 1a) and configured GitHub to recognize your ssh key (in the previous step). All that remains is to enable the remote server to use this ssh key to communicate with GitHub! 
-
-
-
-To do this, you will need to create (or edit, if one already exists) your ```~/.ssh/config``` file on your LOCAL machine.
-
-
-### Option 1
-```
-cd ~/.ssh                                 # Move to the .ssh directory
-touch config                              # Make a new file called config
-echo "Host 139.147.9.*" >> config         # Append Host 139.147.9.* to that file
-echo "    IdentityFile ~/.ssh/id_rsa" >> config
-echo "    AddKeysToAgent yes"         >> config
-echo "    ForwardAgent yes" >> config     # Append     ForwardAgent yes to that file
-```
-
-### Option 2
-This repository contains a [config](/config) file. Download it and add it to your ~/.ssh folder using your OS's file explorer.
-
-## Testing your configuration
-- ssh to the remote lab server ```ssh username@139.147.9.XXX```
-- Test the connection to GitHub from the server ```ssh -T git@github.com```
-- You should see the same message as before, ```> Hi username! You've successfully authenticated, but GitHub does not provide shell access.```
-
-
-## Debugging failed connections
+### Debugging failed connections
 Should you recieve an error message when trying to test your ssh connection to GitHub, try these troubleshooting steps.
 
-### Windows
+#### Windows
 Follow [these steps](http://docs.gcc.rug.nl/hyperchicken/ssh-agent-forwarding-mobaxterm/) to tell MobaXterm exactly where your private key is located.
 
 
 Note: you will want to load the private key here, so ```id_rsa``` not ```id_rsa.pub```
 
-### Mac
+#### Mac
 Run the following command to see if your key has been added to the ssh agent
 
 ```
@@ -97,8 +48,132 @@ ssh-add ~/.ssh/id_rsa
 This problem may reemmerge when you restart your machine and/or terminal. If it does, simply rerun the ```ssh-add ~/.ssh/id_rsa``` command.
 
 
+## 2. Connecting to the lab machine
+
+The `ssh` program allows you to run commands on a remote machine. The most basic way of doing this is to execute the following.
+
+```
+ssh 139.147.9.XXX #Where XXX are the last three digits of the ip address provided by your instructor.
+```
+
+The above command will start a terminal on a different computer 139.147.9.XXX and allow you to perform any non-GUI interactivity. If you would like to start a graphical program you need to enable "X11 forwarding." X11 is the program that gives you a nice graphical interface and exists as a server on each computer, and these servers can cross-communicate passing graphic commands as needed. Running the ssh command in the following way facilitates that.
+
+
+```
+ssh -Y 139.147.9.XXX #Where XXX are the last three digits of the ip address provided by your instructor.
+```
+
+### Different IDs
+The two examples above did not have a specified ID, instead the ID of the account you are currently using was used as a default. This is an excellent reason to use the same ID on all of your computer accounts. But sometimes you will need to use a different account, and the following is how you would do that.
+
+```
+ssh different-id@139.147.9.XXX # if only text based programs will be used
+```
+
+```
+ssh -Y different-id@139.147.9.XXX # if graphical programs will be used
+```
+
+### Test it out!
+
+**Ask your instructor for credentials and ip address for logging in to the remote machine for you and your partner.**
+
+Use the provided credentials to ssh to that machine.
+
+```
+ssh USERNAME@139.147.9.XXX
+```
+
+Enter your password. (If prompted by MobaXterm to save your password, politely decline. We'll set up password-less authentication next)
+
+You should now be connected to the lab machine! Type the `exit` command to return to your local terminal.
+
+## 3. Password-less  `ssh`
+
+### Secure Copy (`scp`)
+To set up a password-less connection to the lab machine, you will need to move your public ssh key to the lab machine. The `scp` tool can move files between machines from the command line.
+
+```
+#scp <source> <destination>
+scp some_directory_or_file USERNAME@139.147.9.XXX:/home/USERNAME/destination_directory/
+```
+
+Here the location of the computer also includes a file system specification, which is everything after the ":". This program is useful for moving things around your systems.
+
+### Moving your public key and setting up the server
+To be able to complete the remote login process without providing any password, you will need to move a copy of the id_rsa.pub file. Use `scp` to copy this file from your local machine to your home directory on the lab server. Run the following command, replacing the USERNAMEs and XXX with your specific information. 
+
+```
+scp ~/.ssh/id_rsa.pub USERNAME@139.147.9.XXX:/home/USERNAME
+```
+
+Run the following command **on the server** to append the contents of your public key into the authorized_keys file:
+
+```
+mkdir .ssh
+cat id_rsa.pub >> .ssh/authorized_keys
+```
+
+Now you should be able to `ssh` to the server without being prompted for a password.
+
+## 4. Summary of your configuration so far
+Having completed the steps so far, you can now ssh from your local machine to your lab account on the department's server. You can also push and pull code from GitHub via ssh. Congratulations! 
+
+The following diagram depicts what you have configured so far:
+```
+---------------------      ssh      ---------------------
+| Your Local Machine|   <--------> | user@139.147.9.XXX  |
+---------------------               ---------------------
+```
+
+The following diagram depicts what you have configured so far:
+```
+---------------------      ssh      ---------------------
+| Your Local Machine|   <--------> |       GitHub       |
+---------------------               ---------------------
+```
+
+By the end of this lab, you will be able to connect to repositories hosted on GitHub using ssh from the lab machine:
+
+```
+ -------------------      ssh    --------------------    ssh    --------
+| Your Local Machine |  <-----> | user@139.147.9.XXX |  <----> | GitHub |
+ -------------------             --------------------           --------
+```
+
+You will also practice working with some basic git commands.
+
+
+
+## 5. Forwarding your ssh agent to the lab server
+At this point, you have connected your local machine to the lab server (completed in Lab 1a) and configured GitHub to recognize your ssh key (in the previous step). All that remains is to enable the remote server to use this ssh key to communicate with GitHub! 
+
+
+
+To do this, you will need to create (or edit, if one already exists) your ```~/.ssh/config``` file on your LOCAL machine.
+
+
+#### Option 1
+```
+cd ~/.ssh                                 # Move to the .ssh directory
+touch config                              # Make a new file called config
+echo "Host 139.147.9.*" >> config         # Append Host 139.147.9.* to that file
+echo "    IdentityFile ~/.ssh/id_rsa" >> config
+echo "    AddKeysToAgent yes"         >> config
+echo "    ForwardAgent yes" >> config     # Append     ForwardAgent yes to that file
+```
+
+#### Option 2
+There is a config file on Moodle. Download it and add it to your ~/.ssh folder using your OS's file explorer.
+
+### Testing your configuration
+- ssh to the remote lab server ```ssh username@139.147.9.XXX```
+- Test the connection to GitHub from the server ```ssh -T git@github.com```
+- You should see the same message as before, ```> Hi username! You've successfully authenticated, but GitHub does not provide shell access.```
+
+
 --------------------------------------------------------------
-## Git'ing started
+## 6. Git'ing started
 
 Git is one of the most widely-used version control tools in industry. As you will see in the remainder of this lab assignment, it's easy to get started! However, there are many useful git features that this lab will not cover. I'd strongly encourage you to spend some time familiarizing yourself with git, since you'll be using it for the rest of the semester (and perhaps long into the future). There are quite a few well-done online tutorials:
 
@@ -107,7 +182,7 @@ Git is one of the most widely-used version control tools in industry. As you wil
 - [visualizing git](http://git-school.github.io/visualizing-git/)
 - And many more...
 
-## Cloning your first repository
+## 7. Cloning your first repository
 For this exercise, you will clone an existing repository onto the lab server from GitHub and make a few changes to the code I have provided you with.
 
 First, let's make a directory to hold this repository. On the remote server run:
@@ -140,11 +215,11 @@ You can also test running the shell script:
 The next step is to make your Git repository aware of who you are, to be able to identify you in the changes you will be making. Both lab partners should execute the following commands with their respective information.
 
 ```
-$ git config --global user.name justin                    # Obviously, replace with your name
+$ git config --global user.name Justin                    # Obviously, replace with your name
 $ git config --global user.email smithjus@lafayette.edu   # and your email
 ```
 
-## Making changes
+## 8. Making changes
 
 The next steps will get you started with the main Git commands. Note that from here forward, I will prefix commands with a '$' to differntiate them from output.
 
@@ -231,7 +306,7 @@ $ git push
 
 Complete this step by having the other (first) lab partner execute a git pull.
 
-To find out what is going on, one can always use the "git log" command. Both lab partners should execute this command.
+To find out what is going on, one can always use the `git log` command. Both lab partners should execute this command.
 
 These basic steps are the essentials of working with Git. But there is one situtation that can be tricky, which arises when both lab partners modify the same file(s) simultaneously. To simulate this, both partners should add their name to the first line in the file, both then execute an add and a commit. Then one of the lab partners should do a push, while the other partner waits.
 
@@ -314,4 +389,4 @@ Experiment further with the basic operations until you feel comfortable with wha
 
 
 ## Submission
-Submission will be by the instructor examining your repository and your lab account.
+Submission will be by the instructor examining your repository and your lab account. This assignment will be graded based on your organizational skills, and I will be examining your server accounts. Please remove any un-needed SSH entries, be sure to remove any un-needed files, and properly identify the files that remain.
